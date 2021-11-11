@@ -16,10 +16,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun rollDice() {
         val dice = Dice(6)
-        val rightTextView: TextView = findViewById(R.id.rightTextView)
-        rightTextView.text = dice.roll().toString()
-        val leftTextView: TextView = findViewById(R.id.leftTextView)
-        leftTextView.text = dice.roll().toString()
+        val rollResult = dice.roll()
+        val luckyNumber = 4
+        val rollResultTextView = findViewById<TextView>(R.id.rollResultTextView)
+        val resultMessageTextView = findViewById<TextView>(R.id.resultMessageTextView)
+
+        rollResultTextView.text = rollResult.toString()
+        when (rollResult) {
+            luckyNumber -> resultMessageTextView.text = "You win!"
+            else -> resultMessageTextView.text = "You lose..."
+        }
     }
 }
 
