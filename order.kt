@@ -1,13 +1,14 @@
 class Order(val orderNumber: Int) {
    private val itemList = mutableListOf<Item>()
 
-   fun addItem(newItem: Item) {
-       addAll(listOf(newItem))
-   }
+    fun addItem(newItem: Item): Order {
+        return addAll(listOf(newItem))
+    }
 
-   fun addAll(newItems: List<Item>) {
-       itemList.addAll(newItems)
-   }
+    fun addAll(newItems: List<Item>): Order {
+        itemList.addAll(newItems)
+        return this
+    }
 
     fun print() {
         println("Order #${orderNumber}")
@@ -39,21 +40,34 @@ class Vegetables(vararg val toppings: String) : Item("Vegetables", 5) {
 }
 
 fun main() {
+    val ordersList = mutableListOf<Order>()
+    
     val order1 = Order(1)
     order1.addItem(Noodles())
-    order1.print()
-
-    println()
+    ordersList.add(order1)
 
     val order2 = Order(2)
     order2.addItem(Noodles())
     order2.addItem(Vegetables())
-    order2.print()
-
-    println()
+    ordersList.add(order2)
 
     val order3 = Order(3)
     val items = listOf(Noodles(), Vegetables("Carrots", "Beans", "Celery"))
     order3.addAll(items)
-    order3.print()
+    ordersList.add(order3)
+    
+    val order4 = Order(4).addItem(Noodles()).addItem(Vegetables("Cabbage", "Onion"))
+	ordersList.add(order4)
+    
+    ordersList.add(
+        Order(5)
+            .addItem(Noodles())
+            .addItem(Noodles())
+            .addItem(Vegetables("Spinach"))
+    )
+    
+    for (order in ordersList) {
+        order.print()
+        println()
+    }
 }
