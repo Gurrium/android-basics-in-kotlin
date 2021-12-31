@@ -6,5 +6,7 @@ fun main() {
     peopleAges.put("Barbara", 42)
     peopleAges["Joe"] = 51
     peopleAges["Fred"] = 31
-    println(peopleAges)
+    peopleAges.forEach { print("${it.key} is ${it.value}, ") }
+    println()
+    println(peopleAges.map { "${it.key} is ${it.value}" }.joinToString(", ") )
 }
