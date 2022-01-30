@@ -11,7 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.runner.AndroidJUnit4
 import com.example.wordsapp.LetterListFragment
 import com.example.wordsapp.R
-import org.junit.Assert.assertEquals
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,7 +38,7 @@ class NavigationTests {
 
     @Test
     fun navigate_to_words_nav_component() {
-        onView(withId(R.id.recycler_view))
+        val perform = onView(withId(R.id.recycler_view))
             .perform(
                 RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                     2,
